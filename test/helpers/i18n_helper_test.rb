@@ -15,16 +15,20 @@ class I18nToolbox::I18nHelperTest < ActionView::TestCase
   
   test "possessive should add localized 's" do
     I18n.backend = I18n::Backend::KeyValue.new({})
-    I18n.backend.store_translations :en, :i18n_toolbox => {:possessive => "%{name}'s ", :possessive_s => "%{name}' "}
-    I18n.backend.store_translations :ja, :i18n_toolbox => {:possessive => "%{name}の", :possessive_s => "%{name}の"}
+    I18n.backend.store_translations :en, :i18n_toolbox => {:possessive => "%{owner}'s %{thing}", :possessive_s => "%{owner}' %{thing}"}
+    I18n.backend.store_translations :ja, :i18n_toolbox => {:possessive => "%{owner}の%{thing}"}
+    I18n.backend.store_translations :fr, :i18n_toolbox => {:possessive => "%{thing} de %{owner}"}
     
-    assert_nil possessive(nil)
+    assert_nil possessive(nil,nil)
     I18n.locale = :en
-    assert_equal "Bob's ", possessive('Bob')
-    assert_equal "Miles' ", possessive('Miles')
+    assert_equal "Bob's house", possessive('Bob','house')
+    assert_equal "Miles' house", possessive('Miles','house')
     I18n.locale = :ja
-    assert_equal "Bobの", possessive('Bob')
-    assert_equal "Milesの", possessive('Miles')
+    assert_equal "Bobの家", possessive('Bob','家')
+    assert_equal "Milesの家", possessive('Miles','家')
+    I18n.locale = :fr
+    assert_equal "La maison de Bob", possessive('Bob','La maison')
+    assert_equal "La maison de Miles", possessive('Miles','La maison')
   end
   
   test "truncate should respect different lengths for different locales" do

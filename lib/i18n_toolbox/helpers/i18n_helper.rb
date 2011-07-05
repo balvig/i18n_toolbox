@@ -5,8 +5,8 @@ module I18nToolbox
       super(source, options)
     end
     
-    def possessive(name)
-      t(name.last == 's' ? :'i18n_toolbox.possessive_s' : :'i18n_toolbox.possessive', :name => name) if name.present?
+    def possessive(owner, thing)
+      t(owner.last == 's' ? :'i18n_toolbox.possessive_s' : :'i18n_toolbox.possessive', :owner => owner, :thing => thing, :default => :'i18n_toolbox.possessive') if owner.present?
     end
 
     def truncate(text, options = {})
