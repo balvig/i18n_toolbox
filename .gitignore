@@ -1,0 +1,7 @@
+*.gem
+.bundle
+Gemfile.lock
+pkg/*
+.DS_Store
+test/debug.log
+test/i18n_toolbox_plugin.sqlite3.db
