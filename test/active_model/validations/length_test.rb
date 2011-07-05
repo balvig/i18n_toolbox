@@ -1,8 +1,6 @@
 require 'test_helper'
 
-class I18nToolbox::LengthValidatorTest < ActiveSupport::TestCase
-  load_schema
-  
+class I18nToolbox::LengthValidatorTest < ActiveSupport::TestCase  
   I18n.backend = I18n::Backend::KeyValue.new({})
   I18n.backend.store_translations :en, :i18n_toolbox => {:character_ratio => 1}
   I18n.backend.store_translations :ja, :i18n_toolbox => {:character_ratio => 0.5}

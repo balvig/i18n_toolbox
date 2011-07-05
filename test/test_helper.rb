@@ -1,35 +1,23 @@
-# require 'rubygems'
-# require 'active_support'
+require 'rubygems'
+require 'bundler'
+Bundler.setup
+ 
+
 ENV['RAILS_ENV'] = 'test'
-ENV['RAILS_ROOT'] ||= File.dirname(__FILE__) + '/../../../..'
- 
-require 'test/unit'
-require File.expand_path(File.join(ENV['RAILS_ROOT'], 'config/environment.rb'))
- 
-def load_schema
-  config = YAML::load(IO.read(File.dirname(__FILE__) + '/database.yml'))
-  ActiveRecord::Base.logger = Logger.new(File.dirname(__FILE__) + "/debug.log")
- 
-  db_adapter = ENV['DB']
- 
-  # no db passed, try one of these fine config-free DBs before bombing.
-  db_adapter ||=
-    begin
-      require 'rubygems'
-      require 'sqlite'
-      'sqlite'
-    rescue MissingSourceFile
-      begin
-        require 'sqlite3'
-        'sqlite3'
-      rescue MissingSourceFile
-      end
-    end
- 
-  if db_adapter.nil?
-    raise "No DB Adapter selected. Pass the DB= option to pick one, or install Sqlite or Sqlite3."
-  end
- 
-  ActiveRecord::Base.establish_connection(config[db_adapter])
-  load(File.dirname(__FILE__) + "/schema.rb")
+require "rails_app/config/environment"
+require "rails/test_help"
+require 'i18n_toolbox'
+
+#  
+# # require 'test/unit'
+# require "rails_app/config/environment"
+# 
+ActiveRecord::Migration.verbose = false
+ActiveRecord::Base.logger = Logger.new(nil)
+ActiveRecord::Migrator.migrate(File.expand_path("../rails_app/db/migrate/", __FILE__))
+
+
+class ActiveSupport::TestCase
+  self.use_transactional_fixtures = true
+  self.use_instantiated_fixtures = false
 end

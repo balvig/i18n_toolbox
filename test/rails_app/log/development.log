@@ -1,0 +1,1 @@
+DEPRECATION WARNING: config.action_view.debug_rjs will be removed in 3.1, from 3.1 onwards you will need to install prototype-rails to continue to use RJS templates . (called from /Users/jens/Documents/Projects/i18n_toolbox/test/rails_app/config/environment.rb:5)
