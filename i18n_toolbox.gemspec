@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Jens Balvig"]
   s.email       = ["jens@balvig.com"]
-  s.homepage    = "http://www.balvig.com"
+  s.homepage    = "https://github.com/balvig/i18n_toolbox"
   s.summary     = %q{Provides a set of convenient helpers and active model additions for working with multiple languages}
   s.description = %q{Provides a set of convenient helpers and active model additions for working with multiple languages}
 
