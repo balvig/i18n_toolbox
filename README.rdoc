@@ -18,12 +18,12 @@ I18n_toolbox is a collection of helpers and active_model additions that solve ba
 
 === truncate
   
-  **config/locales/ja.yml**
+**config/locales/ja.yml**
   ja:
     i18n_toolbox:
       character_ratio: 0.5
       
-  **Output:**
+**Output:**
   I18n.locale = :en
   truncate("2 byte characters are wider", :length => 20, :localize => true) # => "2 byte characters..."
   I18n.locale = :ja
@@ -31,12 +31,12 @@ I18n_toolbox is a collection of helpers and active_model additions that solve ba
 
 === validates_length_of
 
-  **config/locales/ja.yml**
+**config/locales/ja.yml**
   ja:
     i18n_toolbox:
       character_ratio: 0.5
     
-  **Model:**
+**Model:**
   class Post < ActiveRecord::Base
     validates_length_of :title, :maximum => 40, :localize => true
     # ...
@@ -49,18 +49,18 @@ I18n_toolbox is a collection of helpers and active_model additions that solve ba
 
 === possessive
 
-  **config/locales/en.yml**
+**config/locales/en.yml**
   en:
     i18n_toolbox:
       possessive: "%{owner}'s %{thing}"
       possessive_s: "%{owner}' %{thing}"
 
-  **config/locales/fr.yml**
+**config/locales/fr.yml**
   fr:
     i18n_toolbox:
       possessive: "%{thing} de %{owner}"
 
-  **Output:**      
+**Output:**      
   I18n.locale = :en
   possessive('Jack','Recipes') # => "Jack's Recipes"
   possessive('Miles','Recipes') # => "Miles' Recipes"
