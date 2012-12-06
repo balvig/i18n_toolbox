@@ -4,7 +4,7 @@ module I18nToolbox
       source = "#{I18n.locale}/#{source}" if options.delete(:localize)
       super(source, options)
     end
-    
+
     def possessive(owner, thing)
       t(owner.last == 's' ? :'i18n_toolbox.possessive_s' : :'i18n_toolbox.possessive', :owner => owner, :thing => thing, :default => :'i18n_toolbox.possessive') if owner.present?
     end

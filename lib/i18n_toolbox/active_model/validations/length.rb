@@ -6,7 +6,7 @@ module ActiveModel
 
         CHECKS.each do |key, validity_check|
           next unless check_value = options[key]
-          
+
           check_value = check_value * I18nToolbox.character_ratio if options[:localize]
 
           value ||= [] if key == :maximum
