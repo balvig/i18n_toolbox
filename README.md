@@ -15,9 +15,9 @@ Serve up a different image depending on locale.
 
 ```ruby
 I18n.locale = :en
-image_tag('logo.png', :localize => true) # => /images/en/logo.png
+image_tag('logo.png', localize: true) # => /images/en/logo.png
 I18n.locale = :ja
-image_tag('logo.png', :localize => true) # => /images/ja/logo.png
+image_tag('logo.png', localize: true) # => /images/ja/logo.png
 ```
 
 ### truncate
@@ -36,9 +36,9 @@ ja:
 
 ```ruby
 I18n.locale = :en
-truncate("2 byte characters are wider", :length => 20, :localize => true) # => "2 byte characters..." (20 chars)
+truncate("2 byte characters are wider", length: 20, localize: true) # => "2 byte characters..." (20 chars)
 I18n.locale = :ja
-truncate("2 byte characters are wider", :length => 20, :localize => true) # => "2 byte ..." (10 chars)
+truncate("2 byte characters are wider", length: 20, localize: true) # => "2 byte ..." (10 chars)
 ```
 
 ### validates_length_of
@@ -56,14 +56,14 @@ ja:
 *Model:*
 ```ruby
 class Post < ActiveRecord::Base
-  validates_length_of :title, :maximum => 40, :localize => true
+  validates_length_of :title, maximum: 40, localize: true
   # ...
 end
 
 I18n.locale = :en
-Post.new(:title => 'English sentences use more chars').valid? # length is under 40, returns true
+Post.new(title: 'English sentences use more chars').valid? # => true, length is under 40
 I18n.locale = :ja
-Post.new(:title => 'Japanese sentences use fewer chars').valid? # => length is over 20, returns false
+Post.new(title: 'Japanese sentences use fewer chars').valid? # => false, length is over 20
 ```
 
 ### possessive
@@ -91,12 +91,12 @@ fr:
 
 ```ruby
 I18n.locale = :en
-possessive('Jack','Recipes') # => "Jack's Recipes"
-possessive('Miles','Recipes') # => "Miles' Recipes"
+possessive('Jack', 'Recipes') # => "Jack's Recipes"
+possessive('Miles', 'Recipes') # => "Miles' Recipes"
 
 I18n.locale = :fr
-possessive('Julien','Recettes') # => "Recettes de Julien"
-possessive('Jacques','Recettes') # => "Recettes de Jacques"
+possessive('Julien', 'Recettes') # => "Recettes de Julien"
+possessive('Jacques', 'Recettes') # => "Recettes de Jacques"
 ```
 
 ## License
