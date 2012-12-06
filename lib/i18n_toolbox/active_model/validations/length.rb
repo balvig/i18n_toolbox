@@ -2,7 +2,7 @@ module ActiveModel
   module Validations
     class LengthValidator < EachValidator
       def validate_each(record, attribute, value)
-        value = options[:tokenizer].call(value) if value.kind_of?(String)
+        value = options[:tokenizer].call(value) if value.kind_of?(String) && options[:tokenizer].present?
 
         CHECKS.each do |key, validity_check|
           next unless check_value = options[key]
